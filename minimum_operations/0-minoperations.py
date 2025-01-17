@@ -1,22 +1,30 @@
 #!/usr/bin/python3
-def minOperations(n):
-    i = 2
-    count = 2
-    isOk = False
-    while i <= n:
-        print(i%n)
-        print(count)
-        if i%n == 0:
-            if isOk!=True:
-                isOk=True
-                count+=1
-            count += 1
-            i+=2
-            # return count + (n - i)/i
-        else:
-            i+=1
-            count += 2
-        print(count)
-    return count
+"""
+    Method that calculate the fewest number of operations.
+"""
 
-print(minOperations(12))
+
+def minOperations(n):
+    """
+        calculate fewest number of operation
+
+        Args:
+             n: repetition of H
+
+        Returns:
+            number of operations(copy all & paste)
+    """
+
+    if n <= 1:
+        return 0
+
+    operations = 0
+    factors = 2
+
+    while factors <= n:
+        if n % factors == 0:
+            operations += factors
+            n //= factors
+        else:
+            factors += 1
+    return operations
