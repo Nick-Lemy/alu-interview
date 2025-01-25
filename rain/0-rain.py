@@ -1,22 +1,19 @@
 #!/usr/bin/python3
-"""
-    Method that calculate the fewest number of operations.
+"""calculates how much rain will be trapped after it rains
 """
 
+
 def rain(walls):
+    """calculates how much rain will be trapped after it rains
     """
-    Interestin module
-    """
-    if len(walls) == 0:
+    if not walls or len(walls) < 3:
         return 0
-    else:
-        if walls[0] == 0:
-            walls.pop(0)
-        elif walls[-1] == 0:
-            walls.pop(-1)
-        o = 0
-        while o < len(walls):
-            if walls[o] != 0:
-                walls.pop(o)
-            o+=1
-        return len(walls)*2
+
+    rain = 0
+    for i in range(1, len(walls) - 1):
+        left = max(walls[:i])
+        right = max(walls[i + 1:])
+        min_wall = min(left, right)
+        if walls[i] < min_wall:
+            rain += min_wall - walls[i]
+    return rain
